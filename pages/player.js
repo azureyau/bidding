@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MainFrame from "@/src/Component/MainFrame";
 
-export default function player() {
+export default function Player() {
   const [data, setData] = useState(null);
   useEffect(() => {
     fetch("https://biddingapi.onrender.com")
