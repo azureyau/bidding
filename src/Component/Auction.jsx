@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Bid from "./bid";
+import Bid from "./Bid";
 
 export default function Auction(props) {
   return (
