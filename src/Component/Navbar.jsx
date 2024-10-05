@@ -1,7 +1,11 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <>
-      <p>this is Navbar</p>
+      <Link href="/">Home </Link>
+
+      <Link href="/player">Player</Link>
     </>
   );
 }
