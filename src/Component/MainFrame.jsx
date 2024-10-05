@@ -6,20 +6,23 @@ import BiddingBox from "./BiddingBox";
 export default function MainFrame(props) {
   const [seqArr, setSeqArr] = useState([]);
 
-  function findCurrentResponse(sequence, responses) {
-    let current = responses;
+  function findCurrentSeqInfo(sequence, responses) {
+    let currentObjArr = responses;
+    let explain = "";
     for (const bid of sequence) {
-      const next = current.find((resp) => resp.bid === bid);
+      const next = currentObjArr.find((resp) => resp.bid === bid);
+
       if (next && next.response) {
-        current = next.response; // Navigate to the next nested response
+        explain = next.meaning;
+        currentObjArr = next.response;
       } else {
-        current = []; // No further responses found
+        currentObjArr = [];
         break;
       }
     }
-    return current;
+    return [currentObjArr, explain];
   }
-  const currentResponses = findCurrentResponse(
+  const [currentResponses, explain] = findCurrentSeqInfo(
     seqArr,
     props.data.agreement.response
   );
@@ -27,13 +30,13 @@ export default function MainFrame(props) {
   function handleBid(bid) {
     setSeqArr((previousSeq) => [...previousSeq, bid]);
   }
-
   return (
     <>
       <br />
       <br />
       <Auction bids={seqArr} controller={setSeqArr} />
       <br />
+      {explain && <p>meaning: {explain}</p>}
       <br />
       <BiddingBox response={currentResponses} onBid={handleBid} />
     </>

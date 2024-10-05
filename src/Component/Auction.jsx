@@ -13,6 +13,7 @@ export default function Auction(props) {
           />
         );
       })}
+      <p>{}</p>
     </>
   );
 }

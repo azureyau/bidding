@@ -1,5 +1,6 @@
 import BidOptions from "./BidOptions";
 export default function BiddingBox(props) {
+  console.log(props.response);
   return (
     <>
       <hr />
