@@ -1,10 +1,10 @@
 import Footer from "./Footer";
-import Navbar from "./Navbar.jsx";
+import MainNav from "./MainNav.jsx";
 
 export default function Layout(props) {
   return (
     <>
-      <Navbar />
+      <MainNav />
       <br />
       <br />
       {props.children}
