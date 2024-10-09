@@ -8,22 +8,31 @@ export default function Auction(props) {
         if (index % 2 === 0) {
           return (
             <Row key={index} className="my-2">
-              <Col>
+              <div className="col-3">
                 <Bid
                   text={seq.bidName}
                   goBack={() => props.controller(props.seq.slice(0, index))}
                 />
-              </Col>
-              <Col>
-                {props.seq[index + 1]?.bidName ? (
-                  <Bid
-                    text={props.seq[index + 1].bidName}
-                    goBack={() =>
-                      props.controller(props.seq.slice(0, index + 1))
-                    }
-                  />
-                ) : null}
-              </Col>
+              </div>
+              <div className="col-3">
+                <Bid text="P" />
+              </div>
+
+              {props.seq[index + 1]?.bidName ? (
+                <>
+                  <div className="col-3">
+                    <Bid
+                      text={props.seq[index + 1].bidName}
+                      goBack={() =>
+                        props.controller(props.seq.slice(0, index + 1))
+                      }
+                    />
+                  </div>
+                  <div className="col-3">
+                    <Bid text="P" />
+                  </div>
+                </>
+              ) : null}
             </Row>
           );
         }

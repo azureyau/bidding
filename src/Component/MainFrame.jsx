@@ -37,7 +37,7 @@ export default function MainFrame(props) {
   }
   return (
     <>
-      <Container className="container-fluid " style={{ margin: "5px" }}>
+      <Container className="container-fluid " style={{ margin: "10px" }}>
         {auctionSeq[0] ? (
           <div className="row">
             <div className="col-3">

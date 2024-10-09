@@ -8,7 +8,9 @@ export default function Bid(props) {
         width: "50px",
         fontSize: "20px",
         margin: "5px",
-        cursor: "pointer",
+        backgroundColor: props.text != "P" ? "#FEF9E7" : null,
+        color: props.text == "P" ? "gray" : null,
+        cursor: props.goBack ? "pointer" : null,
       }}
       className="m-2 text-center"
       onClick={props.goBack}
