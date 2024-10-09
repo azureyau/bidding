@@ -7,15 +7,15 @@ export default function BiddingBox(props) {
     <>
       <hr />
       <ul className="list-group">
-        {respList.map((e) => (
-          <li
-            className="list-group-item list-group-item-action"
-            key={e.bid}
-            onClick={() => props.onBid({ bidName: e.bid, explain: e.meaning })}
-            style={{ cursor: "pointer" }}
-          >
-            <BidOptions response={e} />
-          </li>
+        {respList.map((e, index) => (
+          <BidOptions
+            key={index}
+            id={index}
+            selected={index == selection}
+            response={e}
+            onBid={props.onBid}
+            setSelection={setSelection}
+          />
         ))}
       </ul>
     </>
