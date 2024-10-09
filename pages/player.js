@@ -12,7 +12,7 @@ export default function Player() {
   if (!data)
     return (
       <>
-        <p>loading.. wait</p>
+        <div class="spinner-border" role="status"></div> <p>loading.. wait</p>
       </>
     );
   return (
