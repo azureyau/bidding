@@ -4,7 +4,7 @@ import MainFrame from "@/src/Component/MainFrame";
 export default function Player() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch("https://biddingapi.onrender.com")
+    fetch("https://biddingapi.onrender.com/api/listing")
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((error) => console.log(error));
