@@ -2,8 +2,8 @@
 ## technology used: API + next.js
 fetching data from a free server. First time loading would be slow (~1min)
 
-## Website is published here
-[Website Published] (https://bidding-3h5z.onrender.com/player)
+## Website is published
+https://bidding-3h5z.onrender.com/player
 
 
 ## current interface:
