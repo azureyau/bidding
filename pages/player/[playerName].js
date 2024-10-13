@@ -23,7 +23,8 @@ export default function Player() {
   if (isLoading)
     return (
       <>
-        <div className="spinner-border" role="status"></div> <p>loading.. Please wait</p>
+        <div className="spinner-border" role="status"></div>
+        <p>loading.. Please wait</p>
       </>
     )
 
