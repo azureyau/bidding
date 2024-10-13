@@ -1,14 +1,20 @@
 {
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/jsx-runtime"
+  ],
   "parserOptions": {
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
-  },
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off"
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"]
+    },
+    "plugins": ["react"]
+  }
 }
