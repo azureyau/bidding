@@ -28,7 +28,6 @@ export default function MainFrame(props) {
 
   function handleBid(bid) {
     setAuctionSeq((previousSeq) => [...previousSeq, bid])
-    console.log(auctionSeq)
   }
   return (
     <>

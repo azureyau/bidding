@@ -13,7 +13,8 @@ export default function Bid(props) {
         cursor: props.goBack ? 'pointer' : null
       }}
       className="m-2 text-center"
-      onClick={props.goBack}>
+      onClick={props.goBack}
+    >
       {props.text}
     </Card>
   )

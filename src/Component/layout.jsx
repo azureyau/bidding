@@ -1,5 +1,5 @@
-import Footer from "./Footer";
-import MainNav from "./MainNav.jsx";
+import Footer from './Footer'
+import MainNav from './MainNav.jsx'
 
 export default function Layout(props) {
   return (
@@ -12,5 +12,5 @@ export default function Layout(props) {
       <br />
       <Footer />
     </>
-  );
+  )
 }
