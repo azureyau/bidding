@@ -8,7 +8,7 @@ export default function BidOptions(props) {
           ${props.selected ? 'active' : 'list-group-item-action'}`}>
         <Row>
           <div
-            className="col-11"
+            className="col-md-11 col-sm-10.5 col-10"
             style={{ cursor: 'pointer' }}
             onClick={() => {
               console.log(props.selected)
@@ -25,7 +25,7 @@ export default function BidOptions(props) {
             {props.response.bid}: {props.response.meaning}
           </div>
           {props.selected ? (
-            <div className="col-1">
+            <div className="col-md-1 col-sm-1.5 col-1">
               <Button
                 type="button"
                 className="btn btn-secondary"

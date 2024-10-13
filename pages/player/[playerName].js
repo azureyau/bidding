@@ -27,12 +27,12 @@ export default function Player() {
         <p>loading.. Please wait</p>
       </>
     )
+  let pName = playerName ? playerName[0].toUpperCase() + playerName.slice(1) : ''
 
   return (
     <>
-      <div className="container-fluid">
-        <p>Player: {data?.player}</p>
-      </div>
+      <div className="container-fluid"></div>
+      <p>Player: {pName}</p>
       <MainFrame data={data} />
     </>
   )

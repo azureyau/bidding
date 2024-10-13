@@ -44,7 +44,7 @@ export default function MainFrame(props) {
             </div>
           </div>
         ) : (
-          <h2> Start bidding below</h2>
+          <h2> Start bidding by clicking the options below</h2>
         )}
       </Container>
       <BiddingBox response={currentResponses} onBid={handleBid} />
