@@ -24,7 +24,7 @@ export default function MainFrame(props) {
     }
     return [currentBidOptionsList, explain]
   }
-  const [currentResponses, explain] = getBidOptionsList(auctionSeq, props.data.agreement?.response)
+  const [currentResponses, explain] = getBidOptionsList(auctionSeq, props.data?.agreement?.response)
 
   function handleBid(bid) {
     setAuctionSeq((previousSeq) => [...previousSeq, bid])

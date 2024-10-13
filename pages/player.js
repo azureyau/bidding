@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react'
 import MainFrame from '@/src/Component/MainFrame'
+import useSWR from 'swr'
 
 export default function Player() {
-  const [data, setData] = useState(null)
+  let [data, setData] = useState(null)
+  const { data: apiData, error, isLoading } = useSWR('https://biddingapi.onrender.com/api/listing')
+
   useEffect(() => {
-    fetch('https://biddingapi.onrender.com/api/listing')
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((error) => console.log('fetch error:', error))
-  }, [])
-  console.log(data)
-  if (!data)
+    if (apiData) {
+      setData(apiData)
+    } else if (!isLoading) {
+      console.log(error)
+    }
+  }, [apiData])
+  if (isLoading)
     return (
       <>
-        <div className="spinner-border" role="status"></div> <p>loading.. wait</p>
+        <div className="spinner-border" role="status"></div> <p>loading.. Please wait</p>
       </>
     )
 
