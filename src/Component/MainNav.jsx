@@ -1,5 +1,5 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
-import Link from "next/link";
+import { Container, Nav, Navbar } from 'react-bootstrap'
+import Link from 'next/link'
 
 export default function MainNav() {
   return (
@@ -21,5 +21,5 @@ export default function MainNav() {
       <br />
       <br />
     </>
-  );
+  )
 }

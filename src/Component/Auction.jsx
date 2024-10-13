@@ -1,5 +1,5 @@
-import { Row, Col } from "react-bootstrap";
-import Bid from "./Bid";
+import { Row, Col } from 'react-bootstrap'
+import Bid from './Bid'
 
 export default function Auction(props) {
   return (
@@ -23,9 +23,7 @@ export default function Auction(props) {
                   <div className="col-3">
                     <Bid
                       text={props.seq[index + 1].bidName}
-                      goBack={() =>
-                        props.controller(props.seq.slice(0, index + 1))
-                      }
+                      goBack={() => props.controller(props.seq.slice(0, index + 1))}
                     />
                   </div>
                   <div className="col-3">
@@ -34,10 +32,10 @@ export default function Auction(props) {
                 </>
               ) : null}
             </Row>
-          );
+          )
         }
-        return null;
+        return null
       })}
     </>
-  );
+  )
 }
