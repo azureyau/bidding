@@ -6,7 +6,7 @@ export default function BiddingBox(props) {
   return (
     <>
       <hr />
-      <ul className="list-group">
+      <ul className='list-group'>
         {respList?.map((e, index) => (
           <BidOptions
             key={index}
@@ -15,6 +15,7 @@ export default function BiddingBox(props) {
             response={e}
             onBid={props.onBid}
             setSelection={setSelection}
+            edit={props.edit}
           />
         ))}
       </ul>

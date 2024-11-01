@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import Footer from './Footer'
 import MainNav from './MainNav.jsx'
 
@@ -7,7 +8,7 @@ export default function Layout(props) {
       <MainNav />
       <br />
       <br />
-      {props.children}
+      <Container fluid>{props.children}</Container>
       <br />
       <br />
       <Footer />

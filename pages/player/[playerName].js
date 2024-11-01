@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import MainFrame from '@/src/Component/MainFrame'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
+import ControlBar from '@/src/Component/ControlBar'
 
 export default function Player() {
   const router = useRouter()
@@ -10,8 +11,12 @@ export default function Player() {
   const {
     data: apiData,
     error,
-    isLoading
-  } = useSWR(playerName ? `https://biddingapi.onrender.com/api/listing/${playerName}` : null)
+    isLoading,
+  } = useSWR(
+    playerName
+      ? `https://biddingapi.onrender.com/api/listing/${playerName}`
+      : null
+  )
 
   useEffect(() => {
     if (apiData) {
@@ -23,16 +28,18 @@ export default function Player() {
   if (isLoading)
     return (
       <>
-        <div className="spinner-border" role="status"></div>
+        <div className='spinner-border' role='status'></div>
         <p>loading.. Please wait</p>
       </>
     )
-  let pName = playerName ? playerName[0].toUpperCase() + playerName.slice(1) : ''
+  let pName = playerName
+    ? playerName[0].toUpperCase() + playerName.slice(1)
+    : ''
 
   return (
     <>
-      <div className="container-fluid"></div>
-      <p>Player: {pName}</p>
+      <div className='container-fluid'></div>
+      <ControlBar player={pName} />
       <MainFrame data={data} />
     </>
   )
