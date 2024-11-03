@@ -6,6 +6,7 @@ import {
 } from '@/store'
 import BidOptions from './BidOptions'
 import { useAtom } from 'jotai'
+import { Button } from 'react-bootstrap'
 export default function BiddingBox(props) {
   const [selection, setSelection] = useAtom(selectionAtom)
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
@@ -25,7 +26,9 @@ export default function BiddingBox(props) {
           />
         ))}
       </ul>
-      <button onClick={() => setAddMode(true)}>Add</button>
+      <Button className='btn btn-secondary' onClick={() => setAddMode(true)}>
+        Add
+      </Button>
     </>
   )
 }

@@ -29,10 +29,12 @@ export default function AddBox(props) {
         vul: data.vul || false,
         non_vul: data.non_vul || false,
       }
-      for (const bid in biddingSeq) {
-        if (!bid.universal && bid.bidName == 'p')
-          newBidData?.previous_seq.push(bid._id)
-        else newBidData?.previous_seq.push('67252d25d9fc91c90e87d1d8') ///pass bid's id, to be fixed
+      for (const bid of biddingSeq) {
+        if (bid.universal && bid.bidName == 'p')
+          newBidData?.previous_seq.push(
+            '67252d25d9fc91c90e87d1d8'
+          ) ///pass bid's id, to be fixed
+        else newBidData?.previous_seq.push(bid._id)
       }
       const response = await fetch(`${server}${props?.playerName}`, {
         method: 'POST',

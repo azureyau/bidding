@@ -6,15 +6,13 @@ export default function ExplainBlock(props) {
   return (
     <div className='container overflow-auto' style={{ padding: '0px 3em' }}>
       <p>
-        {biddingSeq?
+        {biddingSeq
           .filter((seq) => !seq?.universal)
           .map((seq, index) => (
-            <>
-              <span key={index}>
-                {seq.bidName} : {seq.meaning}
-              </span>
+            <span key={index}>
+              {seq.bidName} : {seq.meaning}
               <br />
-            </>
+            </span>
           ))}
       </p>
     </div>
