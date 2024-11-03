@@ -1,8 +1,17 @@
+import {
+  addModeAtom,
+  biddingSeqAtom,
+  respOptionsAtom,
+  selectionAtom,
+} from '@/store'
 import BidOptions from './BidOptions'
-import { useState } from 'react'
+import { useAtom } from 'jotai'
 export default function BiddingBox(props) {
-  let respList = props.response?.sort((a, b) => a.bidName - b.bidName)
-  let [selection, setSelection] = useState(null)
+  const [selection, setSelection] = useAtom(selectionAtom)
+  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [respOptions, setRespOptions] = useAtom(respOptionsAtom)
+  const [addMode, setAddMode] = useAtom(addModeAtom)
+  let respList = respOptions?.slice().sort((a, b) => a.bidName - b.bidName)
   return (
     <>
       <hr />
@@ -11,14 +20,12 @@ export default function BiddingBox(props) {
           <BidOptions
             key={index}
             id={index}
-            selected={index == selection}
+            selected={e?._id == selection?._id}
             response={e}
-            onBid={props.onBid}
-            setSelection={setSelection}
-            edit={props.edit}
           />
         ))}
       </ul>
+      <button onClick={() => setAddMode(true)}>Add</button>
     </>
   )
 }

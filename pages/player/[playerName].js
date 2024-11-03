@@ -1,30 +1,71 @@
 import { useEffect, useState } from 'react'
 import MainFrame from '@/src/Component/MainFrame'
-import useSWR from 'swr'
+import useSWR, { mutate } from 'swr'
 import { useRouter } from 'next/router'
 import ControlBar from '@/src/Component/ControlBar'
+import { useAtom, useSetAtom } from 'jotai'
+import {
+  addModeAtom,
+  biddingSeqAtom,
+  editingModeAtom,
+  respOptionsAtom,
+} from '@/store'
 
 export default function Player() {
   const router = useRouter()
-  let [data, setData] = useState(null)
+  const [respOptions, setResOptions] = useAtom(respOptionsAtom)
+  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
+  const [addMode, setAddMode] = useAtom(addModeAtom)
   const { playerName } = router.query
+  //const server = 'https://biddingapi.onrender.com/api/listings/'
+  const server = 'http://localhost:3000/api/listings/'
+  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [fetchPath, setFetchPath] = useState()
+  useEffect(() => {
+    if (playerName) {
+      setBiddingSeq([])
+      setEditingMode(false)
+      setAddMode(false)
+    }
+  }, [playerName])
+
+  useEffect(() => {
+    const revSeq = biddingSeq?.slice().reverse()
+    let found = false
+    for (const bid of revSeq) {
+      if (!bid.universal) {
+        console.log('ghost', `${server}${playerName}?objID=${bid._id}`)
+        setFetchPath(`${server}${playerName}` + '?objID=' + `${bid._id}`)
+
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      setFetchPath(`${server}${playerName}`)
+    }
+  }, [biddingSeq, playerName, mutate])
+
   const {
     data: apiData,
     error,
     isLoading,
-  } = useSWR(
-    playerName
-      ? `https://biddingapi.onrender.com/api/listing/${playerName}`
-      : null
-  )
+  } = useSWR(playerName ? fetchPath : null)
 
   useEffect(() => {
     if (apiData) {
-      setData(apiData)
+      setResOptions(apiData)
     } else if (playerName && !isLoading) {
       console.log(error)
     }
   }, [apiData])
+
+  useEffect(() => {
+    if (fetchPath && playerName) {
+      console.log('Mutating with fetchPath:', fetchPath)
+      mutate(fetchPath) // Trigger revalidation with updated fetchPath
+    }
+  }, [fetchPath, mutate, playerName]) // Separate effect to trigger mutation
   if (isLoading)
     return (
       <>
@@ -40,7 +81,7 @@ export default function Player() {
     <>
       <div className='container-fluid'></div>
       <ControlBar player={pName} />
-      <MainFrame data={data} />
+      <MainFrame playerName={playerName} />
     </>
   )
 }

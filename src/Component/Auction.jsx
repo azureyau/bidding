@@ -1,38 +1,15 @@
-import { Row, Col } from 'react-bootstrap'
-import Bid from './Bid'
+import { useAtom } from 'jotai'
+import { biddingSeqAtom } from '@/store'
+import BidRow from './BidRow'
 
-export default function Auction(props) {
+export default function Auction() {
+  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  console.log(biddingSeq)
   return (
     <>
-      {props.seq.map((seq, index) => {
-        if (index % 2 === 0) {
-          return (
-            <Row key={index} className="my-2">
-              <div className="col-3">
-                <Bid
-                  text={seq.bidName}
-                  goBack={() => props.controller(props.seq.slice(0, index))}
-                />
-              </div>
-              <div className="col-3">
-                <Bid text="P" />
-              </div>
-
-              {props.seq[index + 1]?.bidName ? (
-                <>
-                  <div className="col-3">
-                    <Bid
-                      text={props.seq[index + 1].bidName}
-                      goBack={() => props.controller(props.seq.slice(0, index + 1))}
-                    />
-                  </div>
-                  <div className="col-3">
-                    <Bid text="P" />
-                  </div>
-                </>
-              ) : null}
-            </Row>
-          )
+      {biddingSeq?.map((e, index) => {
+        if (index % 4 === 0) {
+          return <BidRow key={index / 4} rowNum={index / 4} />
         }
         return null
       })}

@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Layout from '@/src/Component/layout'
 import { SWRConfig } from 'swr'
 
-const port = process.env.PORT || 10000
-
 const fetcher = async (...args) => {
   const response = await fetch(...args)
 

@@ -1,3 +1,5 @@
+import { editingModeAtom } from '@/store'
+import { useAtom } from 'jotai'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
@@ -6,8 +8,10 @@ export default function EditingBox() {
 
   function submitForm(data) {
     console.log(data)
+    setEditingMode(false)
   }
 
+  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
   return (
     <>
       <p>editingBox</p>
@@ -18,7 +22,7 @@ export default function EditingBox() {
             <Form.Control
               type='text'
               placeholder='1c'
-              {...register('explanation')}
+              {...register('bidName')}
             />
           </Form.Group>
 
@@ -27,7 +31,7 @@ export default function EditingBox() {
             <Form.Control
               type='text'
               placeholder='NAT'
-              {...register('explanation')}
+              {...register('meaning')}
             />
           </Form.Group>
 
@@ -43,34 +47,34 @@ export default function EditingBox() {
             <Form.Check
               inline
               label='Non'
-              name='non'
-              id='non'
-              {...register('non', { value: true })}
+              name='non_vul'
+              id='non_vul'
+              {...register('non_vul', { value: true })}
             />
             <Form.Check
               inline
               label='FV'
-              name='FV'
-              id='FV'
-              {...register('FV', { value: true })}
+              name='fv'
+              id='fv'
+              {...register('fv', { value: true })}
             />
             <Form.Check
               inline
               label='UF'
-              name='UF'
-              id='UF'
-              {...register('UF', { value: true })}
+              name='uf'
+              id='uf'
+              {...register('uf', { value: true })}
             />
           </div>
         </Form>
         <Row>
           <Col md-3>
-            <Button variant='primary' onClick={handleSubmit(submitForm)}>
+            <Button variant='primary' onClick={() => handleSubmit(submitForm)}>
               Submit
             </Button>{' '}
           </Col>
           <Col md-3>
-            <Button variant='secondary' onClick={(e) => console.log(e)}>
+            <Button variant='secondary' onClick={() => setEditingMode(false)}>
               Cancel
             </Button>
           </Col>

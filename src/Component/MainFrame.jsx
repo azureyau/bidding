@@ -1,51 +1,29 @@
 import Auction from './Auction'
-import { useState, useEffect } from 'react'
 import BiddingBox from './BiddingBox'
 import { Container } from 'react-bootstrap'
 import ExplainBlock from './ExplainBlock'
 import EditingBox from './EditingBox'
+import { useAtom } from 'jotai'
+import { addModeAtom, biddingSeqAtom, editingModeAtom } from '@/store'
+import AddBox from './AddBox'
 
 //https://biddingapi.onrender.com
 export default function MainFrame(props) {
-  const [auctionSeq, setAuctionSeq] = useState([])
-  const [editingMode, setEditingMode] = useState(false)
-  function getBidOptionsList(auctionSeq, responses) {
-    let currentBidOptionsList = responses
-    let explain = ''
-    for (const auction of auctionSeq) {
-      const next = currentBidOptionsList.find(
-        (resp) => resp.bid === auction.bidName
-      )
+  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
+  const [addMode, setAddMode] = useAtom(addModeAtom)
 
-      if (next && next.response) {
-        explain = next.meaning
-        currentBidOptionsList = next.response
-      } else {
-        currentBidOptionsList = []
-        break
-      }
-    }
-    return [currentBidOptionsList, explain]
-  }
-  const [currentResponses, explain] = getBidOptionsList(
-    auctionSeq,
-    props.data?.agreement?.response
-  )
-
-  function handleBid(bid) {
-    setAuctionSeq((previousSeq) => [...previousSeq, bid])
-  }
   return (
     <>
       <Container className='container-fluid' style={{ margin: '10px' }}>
-        {auctionSeq[0] ? (
+        {true ? (
           <div className='row'>
             <div className='col-md-3 col-sm-6'>
-              <Auction seq={auctionSeq} controller={setAuctionSeq} />
+              <Auction />
             </div>
 
             <div className='col-md-9 col-sm-6'>
-              <ExplainBlock seq={auctionSeq} />
+              <ExplainBlock />
             </div>
           </div>
         ) : (
@@ -54,12 +32,10 @@ export default function MainFrame(props) {
       </Container>
       {editingMode ? (
         <EditingBox />
+      ) : addMode ? (
+        <AddBox playerName={props?.playerName} />
       ) : (
-        <BiddingBox
-          response={currentResponses}
-          onBid={handleBid}
-          edit={() => setEditingMode(true)}
-        />
+        <BiddingBox />
       )}
     </>
   )
