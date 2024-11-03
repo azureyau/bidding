@@ -1,11 +1,11 @@
-import { addModeAtom } from '@/store'
+import { addModeAtom, biddingSeqAtom } from '@/store'
 import { useAtom } from 'jotai'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export default function AddBox(props) {
   const { register, setValue, reset, handleSubmit } = useForm()
-
+  const [biddingSeq, SetbiddingSeq] = useAtom(biddingSeqAtom)
   const [addMode, setAddMode] = useAtom(addModeAtom)
   //const server = 'https://biddingapi.onrender.com/api/listings/'
   const server = 'http://localhost:3000/api/listings/'
@@ -14,7 +14,7 @@ export default function AddBox(props) {
     try {
       // Preparing the object to match the desired structure
       const newBidData = {
-        bidName: data.bidName,
+        bidName: data.bidName.toLowerCase(),
         meaning: data.meaning,
         author: 'JY',
         update_date: new Date().toLocaleDateString('en-GB', {
@@ -29,7 +29,11 @@ export default function AddBox(props) {
         vul: data.vul || false,
         non_vul: data.non_vul || false,
       }
-      console.log('here') /////////////////
+      for (const bid in biddingSeq) {
+        if (!bid.universal && bid.bidName == 'p')
+          newBidData?.previous_seq.push(bid._id)
+        else newBidData?.previous_seq.push('67252d25d9fc91c90e87d1d8') ///pass bid's id, to be fixed
+      }
       const response = await fetch(`${server}${props?.playerName}`, {
         method: 'POST',
         headers: {
@@ -37,12 +41,10 @@ export default function AddBox(props) {
         },
         body: JSON.stringify(newBidData),
       })
-      console.log('here2') /////////////////
 
       if (response.ok) {
         reset() // Reset the form if using useForm()
         setAddMode(false) // Optionally exit add mode
-        // Trigger data refresh or mutation if needed
       } else {
         console.error('Failed to submit bid')
       }
@@ -60,7 +62,14 @@ export default function AddBox(props) {
             <Form.Control
               type='text'
               placeholder='1c'
-              {...register('bidName')}
+              {...register('bidName', {
+                required: 'Bid name is required',
+                pattern: {
+                  value: /^[1-7][chdsnCHDSN]$/,
+                  message:
+                    'Must be two characters: first is 1-7 and second is c/h/d/s/n',
+                },
+              })}
             />
           </Form.Group>
 
@@ -106,12 +115,12 @@ export default function AddBox(props) {
           </div>
         </Form>
         <Row>
-          <Col md-3>
+          <Col md={3}>
             <Button variant='primary' onClick={handleSubmit(submitForm)}>
               Submit
             </Button>{' '}
           </Col>
-          <Col md-3>
+          <Col md={3}>
             <Button variant='secondary' onClick={() => setAddMode(false)}>
               Cancel
             </Button>

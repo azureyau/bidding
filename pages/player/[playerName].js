@@ -28,6 +28,11 @@ export default function Player() {
       setAddMode(false)
     }
   }, [playerName])
+  useEffect(() => {
+    if (playerName) {
+      mutate()
+    }
+  }, [editingMode])
 
   useEffect(() => {
     const revSeq = biddingSeq?.slice().reverse()
@@ -53,10 +58,8 @@ export default function Player() {
   } = useSWR(playerName ? fetchPath : null)
 
   useEffect(() => {
-    if (apiData) {
+    if (playerName && !isLoading) {
       setResOptions(apiData)
-    } else if (playerName && !isLoading) {
-      console.log(error)
     }
   }, [apiData])
 

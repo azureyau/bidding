@@ -33,7 +33,7 @@ export default function MainFrame(props) {
       {editingMode ? (
         <EditingBox />
       ) : addMode ? (
-        <AddBox playerName={props?.playerName} />
+        <AddBox playerName={props?.playerName} mutate={props?.mutate} />
       ) : (
         <BiddingBox />
       )}
