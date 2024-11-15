@@ -31,7 +31,7 @@ export default function MainFrame(props) {
         )}
       </Container>
       {editingMode ? (
-        <EditingBox />
+        <EditingBox playerName={props?.playerName} />
       ) : addMode ? (
         <AddBox playerName={props?.playerName} />
       ) : (

@@ -48,6 +48,7 @@ export default function BidOptions(props) {
                 type='button'
                 className='btn btn-secondary'
                 onClick={() => setEditingMode(true)}
+                disabled={selection.universal}
               >
                 {' '}
                 Edit

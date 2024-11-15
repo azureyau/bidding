@@ -1,17 +1,20 @@
-import { editingModeAtom } from '@/store'
+import { editingModeAtom, selectionAtom } from '@/store'
 import { useAtom } from 'jotai'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
-export default function EditingBox() {
-  const { register, handleSubmit, setValue } = useForm()
+export default function EditingBox(props) {
+  const [selection] = useAtom(selectionAtom)
+  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
+  const { register, handleSubmit, setValue } = useForm({
+    defaultValues: { bidName: selection.bidName },
+  })
 
   function submitForm(data) {
     console.log(data)
     setEditingMode(false)
   }
 
-  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
   return (
     <>
       <p>editingBox</p>
@@ -23,6 +26,7 @@ export default function EditingBox() {
               type='text'
               placeholder='1c'
               {...register('bidName')}
+              disabled
             />
           </Form.Group>
 
