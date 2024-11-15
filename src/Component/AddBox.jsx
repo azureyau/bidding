@@ -4,9 +4,9 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export default function AddBox(props) {
-  const { register, setValue, reset, handleSubmit } = useForm()
-  const [biddingSeq, SetbiddingSeq] = useAtom(biddingSeqAtom)
-  const [addMode, setAddMode] = useAtom(addModeAtom)
+  const { register, reset, handleSubmit } = useForm()
+  const [biddingSeq] = useAtom(biddingSeqAtom)
+  const [_, setAddMode] = useAtom(addModeAtom)
   const server = 'https://biddingapi.onrender.com/api/listings/'
   // const server = 'http://localhost:3000/api/listings/'
   const submitForm = async (data) => {

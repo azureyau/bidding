@@ -3,8 +3,8 @@ import { biddingSeqAtom } from '@/store'
 import BidRow from './BidRow'
 
 export default function Auction() {
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
-  console.log(biddingSeq)
+  const [biddingSeq] = useAtom(biddingSeqAtom)
+  console.log('biddingSeq:', biddingSeq)
   return (
     <>
       {biddingSeq?.map((e, index) => {

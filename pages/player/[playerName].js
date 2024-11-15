@@ -51,15 +51,41 @@ export default function Player() {
     }
   }, [biddingSeq, playerName, mutate])
 
-  const {
-    data: apiData,
-    error,
-    isLoading,
-  } = useSWR(playerName ? fetchPath : null)
+  const { data: apiData, isLoading } = useSWR(playerName ? fetchPath : null)
 
+  const letterOrder = { p: 0, c: 1, d: 2, h: 3, s: 4, n: 5 }
+  const sortResponse = (arr) => {
+    arr.sort((a, b) => {
+      // If 'p' is involved, it should come first
+      if (a.bidName === 'p') return -1
+      if (b.bidName === 'p') return 1
+
+      // Split the bid into number and letter parts
+      const [aNum, aLetter] = [
+        parseInt(a.bidName),
+        a.bidName[a.bidName.length - 1],
+      ]
+      const [bNum, bLetter] = [
+        parseInt(b.bidName),
+        b.bidName[b.bidName.length - 1],
+      ]
+
+      // Compare numbers first
+      if (aNum !== bNum) {
+        return aNum - bNum
+      }
+
+      // Compare letters based on custom order
+      return letterOrder[aLetter] - letterOrder[bLetter]
+    })
+  }
   useEffect(() => {
-    if (playerName && !isLoading) {
-      setResOptions(apiData)
+    if (playerName && !isLoading && apiData) {
+      console.log('apiData', apiData)
+      const dataCopy = [...apiData]
+      sortResponse(dataCopy)
+      console.log('sorted:', dataCopy)
+      setResOptions(dataCopy)
     }
   }, [apiData])
 

@@ -11,7 +11,7 @@ export default function BidOptions(props) {
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [selection, setSelection] = useAtom(selectionAtom)
   const [editingMode, setEditingMode] = useAtom(editingModeAtom)
-  const [contest, setContest] = useAtom(contestAtom)
+  const [contest] = useAtom(contestAtom)
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function BidOptions(props) {
                 type='button'
                 className='btn btn-secondary'
                 onClick={() => setEditingMode(true)}
-                disabled={selection.universal}
+                disabled={selection?.universal}
               >
                 {' '}
                 Edit

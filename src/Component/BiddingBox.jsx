@@ -1,16 +1,10 @@
-import {
-  addModeAtom,
-  biddingSeqAtom,
-  respOptionsAtom,
-  selectionAtom,
-} from '@/store'
+import { addModeAtom, respOptionsAtom, selectionAtom } from '@/store'
 import BidOptions from './BidOptions'
 import { useAtom } from 'jotai'
 import { Button } from 'react-bootstrap'
 export default function BiddingBox(props) {
   const [selection, setSelection] = useAtom(selectionAtom)
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
-  const [respOptions, setRespOptions] = useAtom(respOptionsAtom)
+  const [respOptions] = useAtom(respOptionsAtom)
   const [addMode, setAddMode] = useAtom(addModeAtom)
   let respList = respOptions?.slice().sort((a, b) => a.bidName - b.bidName)
   return (

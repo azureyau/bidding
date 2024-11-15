@@ -9,9 +9,9 @@ import AddBox from './AddBox'
 
 //https://biddingapi.onrender.com
 export default function MainFrame(props) {
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
-  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
-  const [addMode, setAddMode] = useAtom(addModeAtom)
+  const [biddingSeq] = useAtom(biddingSeqAtom)
+  const [editingMode] = useAtom(editingModeAtom)
+  const [addMode] = useAtom(addModeAtom)
 
   return (
     <>

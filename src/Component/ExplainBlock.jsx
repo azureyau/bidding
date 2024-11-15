@@ -2,7 +2,7 @@ import { biddingSeqAtom } from '@/store'
 import { useAtom } from 'jotai'
 
 export default function ExplainBlock(props) {
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [biddingSeq] = useAtom(biddingSeqAtom)
   return (
     <div className='container overflow-auto' style={{ padding: '0px 3em' }}>
       <p>
