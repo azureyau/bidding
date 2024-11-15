@@ -5,14 +5,53 @@ import { useForm } from 'react-hook-form'
 
 export default function EditingBox(props) {
   const [selection] = useAtom(selectionAtom)
-  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
-  const { register, handleSubmit, setValue } = useForm({
-    defaultValues: { bidName: selection.bidName },
+  const [_, setEditingMode] = useAtom(editingModeAtom)
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: { bidName: selection.bidName, meaning: selection.meaning },
   })
+  const server = 'https://biddingapi.onrender.com/api/listings/'
+  // const server = 'http://localhost:3000/api/listings/'
 
-  function submitForm(data) {
-    console.log(data)
-    setEditingMode(false)
+  async function submitForm(data) {
+    try {
+      // Preparing the object to match the desired structure
+      const newBidData = {
+        bidName: data.bidName.toLowerCase(),
+        meaning: data.meaning,
+        author: 'JY',
+        update_date: new Date().toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        }), // Set to current date in specified format
+        response: selection?.response, // Assuming response is an ID from form
+        previous_seq: selection?.previous_seq,
+        fv: data.fv || false,
+        uf: data.uf || false,
+        vul: data.vul || false,
+        non_vul: data.non_vul || false,
+      }
+      const response = await fetch(
+        `${server}${props?.playerName}?objID=${selection._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newBidData),
+        }
+      )
+      console.log(`${server}${props?.playerName}?objID=${selection._id}`)
+      console.log(response.ok)
+      if (response.ok) {
+        reset() // Reset the form if using useForm()
+        setEditingMode(false) // Optionally exit add mode
+      } else {
+        console.error('Failed to submit bid')
+      }
+    } catch (error) {
+      console.error('Error submitting bid:', error)
+    }
   }
 
   return (
@@ -22,12 +61,7 @@ export default function EditingBox(props) {
         <Form>
           <Form.Group className='mb-3'>
             <Form.Label>Bid revising</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='1c'
-              {...register('bidName')}
-              disabled
-            />
+            <Form.Control type='text' {...register('bidName')} disabled />
           </Form.Group>
 
           <Form.Group className='mb-3'>
@@ -51,33 +85,33 @@ export default function EditingBox(props) {
             <Form.Check
               inline
               label='Non'
-              name='non_vul'
-              id='non_vul'
-              {...register('non_vul', { value: true })}
+              name='non'
+              id='non'
+              {...register('non', { value: true })}
             />
             <Form.Check
               inline
               label='FV'
-              name='fv'
-              id='fv'
-              {...register('fv', { value: true })}
+              name='FV'
+              id='FV'
+              {...register('FV', { value: true })}
             />
             <Form.Check
               inline
               label='UF'
-              name='uf'
-              id='uf'
-              {...register('uf', { value: true })}
+              name='UF'
+              id='UF'
+              {...register('UF', { value: true })}
             />
           </div>
         </Form>
         <Row>
-          <Col md-3>
-            <Button variant='primary' onClick={() => handleSubmit(submitForm)}>
+          <Col md={3}>
+            <Button variant='primary' onClick={handleSubmit(submitForm)}>
               Submit
             </Button>{' '}
           </Col>
-          <Col md-3>
+          <Col md={3}>
             <Button variant='secondary' onClick={() => setEditingMode(false)}>
               Cancel
             </Button>

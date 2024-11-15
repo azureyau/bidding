@@ -17,8 +17,8 @@ export default function Player() {
   const [editingMode, setEditingMode] = useAtom(editingModeAtom)
   const [addMode, setAddMode] = useAtom(addModeAtom)
   const { playerName } = router.query
-  //const server = 'https://biddingapi.onrender.com/api/listings/'
-  const server = 'http://localhost:3000/api/listings/'
+  const server = 'https://biddingapi.onrender.com/api/listings/'
+  //const server = 'http://localhost:3000/api/listings/'
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [fetchPath, setFetchPath] = useState()
   useEffect(() => {

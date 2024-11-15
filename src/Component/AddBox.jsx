@@ -7,9 +7,8 @@ export default function AddBox(props) {
   const { register, setValue, reset, handleSubmit } = useForm()
   const [biddingSeq, SetbiddingSeq] = useAtom(biddingSeqAtom)
   const [addMode, setAddMode] = useAtom(addModeAtom)
-  //const server = 'https://biddingapi.onrender.com/api/listings/'
-  const server = 'http://localhost:3000/api/listings/'
-  console.log(`${server}${props?.playerName}`)
+  const server = 'https://biddingapi.onrender.com/api/listings/'
+  // const server = 'http://localhost:3000/api/listings/'
   const submitForm = async (data) => {
     try {
       // Preparing the object to match the desired structure
@@ -31,9 +30,8 @@ export default function AddBox(props) {
       }
       for (const bid of biddingSeq) {
         if (bid.universal && bid.bidName == 'p')
-          newBidData?.previous_seq.push(
-            '67252d25d9fc91c90e87d1d8'
-          ) ///pass bid's id, to be fixed
+          newBidData?.previous_seq.push('67252d25d9fc91c90e87d1d8')
+        ///pass bid's id, to be fixed
         else newBidData?.previous_seq.push(bid._id)
       }
       const response = await fetch(`${server}${props?.playerName}`, {
