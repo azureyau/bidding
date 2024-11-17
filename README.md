@@ -1,6 +1,13 @@
 # bidding
 
-## latest update on Nov 15, 2024
+## release notes
+
+### Nov 16,2024:
+  - new: log in
+  - revise: add bidding button avaliable only after logged in
+  - revise: editing bidding button avaliable only after logged in
+
+### Nov 15, 2024:
   - new: add bidding button
   - new: revise bidding button
   - object structure of bidding revised
