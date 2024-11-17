@@ -3,7 +3,7 @@
 ## release notes
 
 ### Nov 16,2024:
-  - new: log in
+  - new: log in feature
   - revise: add bidding button avaliable only after logged in
   - revise: editing bidding button avaliable only after logged in
 
