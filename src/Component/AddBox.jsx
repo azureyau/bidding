@@ -90,6 +90,7 @@ export default function AddBox(props) {
               name='vul'
               id='vul'
               {...register('vul', { value: true })}
+              disabled
             />
             <Form.Check
               inline
@@ -97,6 +98,7 @@ export default function AddBox(props) {
               name='non'
               id='non'
               {...register('non', { value: true })}
+              disabled
             />
             <Form.Check
               inline
@@ -104,6 +106,7 @@ export default function AddBox(props) {
               name='FV'
               id='FV'
               {...register('FV', { value: true })}
+              disabled
             />
             <Form.Check
               inline
@@ -111,6 +114,7 @@ export default function AddBox(props) {
               name='UF'
               id='UF'
               {...register('UF', { value: true })}
+              disabled
             />
           </div>
         </Form>

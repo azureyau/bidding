@@ -30,7 +30,9 @@ export default function Bid(props) {
     <button
       type='button'
       className='btn btn-info '
-      onClick={() => setBiddingSeq(biddingSeq.slice(0, props?.index))}
+      onClick={() =>
+        setBiddingSeq(biddingSeq.slice(0, props?.index + 1 + !contest))
+      }
       disabled={editingMode || addMode}
     >
       {biddingSeq[props?.index]?.bidName}

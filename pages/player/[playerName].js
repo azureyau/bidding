@@ -32,7 +32,7 @@ export default function Player() {
     if (playerName) {
       mutate()
     }
-  }, [editingMode])
+  }, [editingMode, addMode])
 
   useEffect(() => {
     const revSeq = biddingSeq?.slice().reverse()
