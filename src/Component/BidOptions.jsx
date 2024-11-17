@@ -2,16 +2,20 @@ import {
   biddingSeqAtom,
   contestAtom,
   editingModeAtom,
+  loggedInAtom,
   selectionAtom,
 } from '@/store'
 import { useAtom } from 'jotai'
+import { useRouter } from 'next/router'
 import { Button } from 'react-bootstrap'
 import { Row } from 'react-bootstrap'
 export default function BidOptions(props) {
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [selection, setSelection] = useAtom(selectionAtom)
-  const [editingMode, setEditingMode] = useAtom(editingModeAtom)
+  const [, setEditingMode] = useAtom(editingModeAtom)
   const [contest] = useAtom(contestAtom)
+  const [loggedIn] = useAtom(loggedInAtom)
+  const router = useRouter()
 
   return (
     <>
@@ -47,7 +51,10 @@ export default function BidOptions(props) {
               <Button
                 type='button'
                 className='btn btn-secondary'
-                onClick={() => setEditingMode(true)}
+                onClick={() => {
+                  if (loggedIn) setEditingMode(true)
+                  else router.push('/login')
+                }}
                 disabled={selection?.universal}
               >
                 {' '}

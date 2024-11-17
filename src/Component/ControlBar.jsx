@@ -7,11 +7,10 @@ import {
 } from '@/store'
 import { useAtom } from 'jotai'
 import { Col, Row, Form, Button } from 'react-bootstrap'
-import { useForm } from 'react-hook-form'
 
 export default function ControlBar(props) {
   const [contestBool, setContestBool] = useAtom(contestAtom)
-  const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
+  const [, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [dealerBool, setDealerBool] = useAtom(dealerAtom)
   const [addMode] = useAtom(addModeAtom)
   const [editingMode] = useAtom(editingModeAtom)

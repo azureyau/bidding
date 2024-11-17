@@ -3,6 +3,7 @@ import Error from 'next/error'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Layout from '@/src/Component/layout'
 import { SWRConfig } from 'swr'
+import RouteGuard from '@/src/Component/RouteGuard'
 
 const fetcher = async (...args) => {
   const response = await fetch(...args)
@@ -18,9 +19,11 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <SWRConfig value={{ fetcher }}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <RouteGuard>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RouteGuard>
       </SWRConfig>
     </>
   )

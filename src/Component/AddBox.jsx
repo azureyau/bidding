@@ -1,3 +1,4 @@
+import { getToken } from '@/lib/authenticate'
 import { addModeAtom, biddingSeqAtom } from '@/store'
 import { useAtom } from 'jotai'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
@@ -38,6 +39,7 @@ export default function AddBox(props) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `JWT ${getToken()}`,
         },
         body: JSON.stringify(newBidData),
       })

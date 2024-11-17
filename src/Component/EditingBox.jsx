@@ -37,6 +37,7 @@ export default function EditingBox(props) {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `JWT ${getToken()}`,
           },
           body: JSON.stringify(newBidData),
         }

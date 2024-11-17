@@ -8,3 +8,4 @@ export const editingModeAtom = atom(false)
 
 export const addModeAtom = atom(false)
 export const respOptionsAtom = atom([])
+export const loggedInAtom = atom(null)

@@ -3,7 +3,7 @@ import MainFrame from '@/src/Component/MainFrame'
 import useSWR, { mutate } from 'swr'
 import { useRouter } from 'next/router'
 import ControlBar from '@/src/Component/ControlBar'
-import { useAtom, useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import {
   addModeAtom,
   biddingSeqAtom,
@@ -13,16 +13,19 @@ import {
 
 export default function Player() {
   const router = useRouter()
-  const [respOptions, setResOptions] = useAtom(respOptionsAtom)
+  const [, setResOptions] = useAtom(respOptionsAtom)
   const [editingMode, setEditingMode] = useAtom(editingModeAtom)
   const [addMode, setAddMode] = useAtom(addModeAtom)
   const { playerName } = router.query
+
+  const allowedPlayerNames = ['daniel', 'rani', 'jacky', 'test', 'standard']
   const server = 'https://biddingapi.onrender.com/api/listings/'
-  //const server = 'http://localhost:3000/api/listings/'
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [fetchPath, setFetchPath] = useState()
   useEffect(() => {
     if (playerName) {
+      if (!allowedPlayerNames.includes(playerName)) router.push('/')
+
       setBiddingSeq([])
       setEditingMode(false)
       setAddMode(false)
@@ -39,7 +42,6 @@ export default function Player() {
     let found = false
     for (const bid of revSeq) {
       if (!bid.universal) {
-        console.log('ghost', `${server}${playerName}?objID=${bid._id}`)
         setFetchPath(`${server}${playerName}` + '?objID=' + `${bid._id}`)
 
         found = true

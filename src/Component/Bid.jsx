@@ -10,7 +10,7 @@ import { useAtom } from 'jotai'
 
 export default function Bid(props) {
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
-  const [contest, setContest] = useAtom(contestAtom)
+  const [contest] = useAtom(contestAtom)
   const [editingMode] = useAtom(editingModeAtom)
   const [addMode] = useAtom(addModeAtom)
   if (

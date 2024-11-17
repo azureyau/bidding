@@ -1,11 +1,19 @@
-import { addModeAtom, respOptionsAtom, selectionAtom } from '@/store'
+import {
+  addModeAtom,
+  loggedInAtom,
+  respOptionsAtom,
+  selectionAtom,
+} from '@/store'
 import BidOptions from './BidOptions'
 import { useAtom } from 'jotai'
 import { Button } from 'react-bootstrap'
+import { useRouter } from 'next/router'
 export default function BiddingBox(props) {
-  const [selection, setSelection] = useAtom(selectionAtom)
+  const [selection] = useAtom(selectionAtom)
+  const [loggedIn] = useAtom(loggedInAtom)
   const [respOptions] = useAtom(respOptionsAtom)
-  const [addMode, setAddMode] = useAtom(addModeAtom)
+  const [, setAddMode] = useAtom(addModeAtom)
+  const router = useRouter()
   let respList = respOptions?.slice().sort((a, b) => a.bidName - b.bidName)
   return (
     <>
@@ -20,7 +28,13 @@ export default function BiddingBox(props) {
           />
         ))}
       </ul>
-      <Button className='btn btn-secondary' onClick={() => setAddMode(true)}>
+      <Button
+        className='btn btn-secondary'
+        onClick={() => {
+          if (loggedIn) setAddMode(true)
+          else router.push('/login')
+        }}
+      >
         Add
       </Button>
     </>
