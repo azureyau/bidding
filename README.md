@@ -3,7 +3,7 @@
 ## release notes
 
 ### Nov 16,2024:
-  - new: log in
+  - new: log in feature
   - revise: add bidding button avaliable only after logged in
   - revise: editing bidding button avaliable only after logged in
 
@@ -21,8 +21,8 @@ fetching data from a free server. First time loading would be slow (~1min)
 https://bidding-3h5z.onrender.com
 
 ## current interface:
+![image](https://github.com/user-attachments/assets/6e3b68f2-3f93-45e8-8955-47e18cfa5705)
 
-![image](https://github.com/user-attachments/assets/11a011f7-7789-4204-a67e-e273d2041010)
 
 
 
