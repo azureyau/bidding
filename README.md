@@ -3,13 +3,13 @@
 ## release notes
 
 ### Nov 16,2024:
-  - new: log in feature
-  - revise: add bidding button avaliable only after logged in
-  - revise: editing bidding button avaliable only after logged in
+  - new feature: log in feature
+  - revised feature: add bidding button avaliable only after logged in
+  - revised feature: editing bidding button avaliable only after logged in
 
 ### Nov 15, 2024:
-  - new: add bidding button
-  - new: revise bidding button
+  - new feature: add bidding button
+  - new feature: revise bidding button
   - object structure of bidding revised
 
 ## technology used: API + next.js
@@ -27,10 +27,11 @@ https://bidding-3h5z.onrender.com
 
 
 
-To do:
+To be released:
 
+1. contested auction
+1. passed hand bidding
 1. copy button for each bidding option
 1. convention list on the player page
 1. convention page
-1. log-in and session
-1. print option for a page and entire convention
+1. print option for a page
