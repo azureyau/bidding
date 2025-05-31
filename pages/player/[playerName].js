@@ -51,7 +51,7 @@ export default function Player() {
     if (!found) {
       setFetchPath(`${server}${playerName}`)
     }
-  }, [biddingSeq, playerName, mutate])
+  }, [biddingSeq, playerName])
 
   const { data: apiData, isLoading } = useSWR(playerName ? fetchPath : null)
 
