@@ -1,6 +1,6 @@
 # bidding
 
-## release notes
+## Release notes
 
 
 ### June 1,2025:
