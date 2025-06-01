@@ -22,7 +22,7 @@ export default function RouteGuard({ children }) {
     } else {
       setAuthorized(true)
     }
-  }, [router])
+  }, [router, router.isReady])
 
   if (!authorized) return null
 
