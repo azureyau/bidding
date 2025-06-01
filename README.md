@@ -6,6 +6,7 @@
 ### June 1,2025:
   - new feature: Restricted access to certain pages (only accessible by approved user after logged in)
   - new feature: User stay logged in after app resfresh / closed and re-open
+  - new feature: Home page now show the project release from project readme
     
 ### Nov 16,2024:
   - new feature: log in feature
