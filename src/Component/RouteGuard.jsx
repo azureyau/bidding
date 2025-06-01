@@ -7,6 +7,7 @@ export default function RouteGuard({ children }) {
   const [authorized, setAuthorized] = useState(false)
 
   useEffect(() => {
+    if (!router.isReady) return
     const token = readToken()
     const username = token?.userName
 
