@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { readToken } from '@/lib/authenticate'
+import { useAtom } from 'jotai'
+import { loggedInAtom } from '@/store'
 
 export default function RouteGuard({ children }) {
   const router = useRouter()
   const [authorized, setAuthorized] = useState(false)
+  const [loggedIn] = useAtom(loggedInAtom)
 
   useEffect(() => {
     if (!router.isReady) return
-    const token = readToken()
-    const username = token?.userName
 
     const path = router.asPath
     const isDanielPage = path === '/player/daniel'
 
-    if (
-      isDanielPage &&
-      (token === null || (username !== 'daniel' && username !== 'jeff'))
-    ) {
+    if (isDanielPage && loggedIn !== 'daniel' && loggedIn !== 'jeff') {
       router.replace('/restricted')
     } else {
       setAuthorized(true)
     }
-  }, [router, router.isReady])
+  }, [router.isReady, loggedIn, router])
 
   if (!authorized) return null
 
