@@ -10,8 +10,33 @@ import {
   editingModeAtom,
   respOptionsAtom,
 } from '@/store'
+import { parseCookies } from 'nookies'
+import { readToken } from '@/lib/authenticate'
 
-export default function Player() {
+export async function getServerSideProps(context) {
+  const { username } = context.params
+  const cookies = parseCookies(context)
+  const token = cookies.token ? readToken(cookies.token) : null
+
+  if (username === 'daniel') {
+    if (!token || (token.userName !== 'daniel' && token.userName !== 'jeff')) {
+      return {
+        redirect: {
+          destination: '/restricted',
+          permanent: false,
+        },
+      }
+    }
+  }
+
+  return {
+    props: {
+      username: username ?? null,
+    },
+  }
+}
+
+export default function Player({ username }) {
   const router = useRouter()
   const [, setResOptions] = useAtom(respOptionsAtom)
   const [editingMode, setEditingMode] = useAtom(editingModeAtom)
