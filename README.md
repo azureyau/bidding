@@ -2,6 +2,8 @@
 
 ## Release notes
 
+### June 8, 2025:
+  - update: the website now will ping the backend sever immediately to shorten the waiting time for the backend to "wake up"
 
 ### June 1, 2025:
   - new feature: Restricted access to certain pages (only accessible by approved user after logged in)
