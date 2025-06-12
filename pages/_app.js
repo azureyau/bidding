@@ -22,6 +22,13 @@ const fetcher = async (...args) => {
 export default function App({ Component, pageProps }) {
   const [, setLoggedIn] = useAtom(loggedInAtom)
   useEffect(() => {
+    fetch('https://biddingapi.onrender.com/ping')
+      .then(() => {
+        console.log('Backend wake-up ping sent.')
+      })
+      .catch((err) => {
+        console.log('Ping failed (backend may still be waking up):', err)
+      })
     const token = readToken()
     if (token?.userName) {
       setLoggedIn(token.userName)
