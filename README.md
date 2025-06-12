@@ -1,14 +1,16 @@
 # bidding
 
-## release notes
+## Release notes
 
+### June 8, 2025:
+  - update: the website will ping the backend sever to shorten the waiting time of the backend server to "wake up"
 
-### June 1,2025:
+### June 1, 2025:
   - new feature: Restricted access to certain pages (only accessible by approved user after logged in)
   - new feature: User stay logged in after app resfresh / closed and re-open
   - new feature: Home page now show the project release from project readme
     
-### Nov 16,2024:
+### Nov 16, 2024:
   - new feature: log in feature
   - revised feature: add bidding button avaliable only after logged in
   - revised feature: editing bidding button avaliable only after logged in
