@@ -58,9 +58,9 @@ export default function Player({ username }) {
   }, [playerName])
   useEffect(() => {
     if (playerName) {
-      mutate()
+      mutate(fetchPath)
     }
-  }, [editingMode, addMode])
+  }, [editingMode, addMode, fetchPath])
 
   useEffect(() => {
     const revSeq = biddingSeq?.slice().reverse()
