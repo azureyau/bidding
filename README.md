@@ -2,8 +2,9 @@
 
 ## Release notes
 
-### June 8, 2025:
+### June 11, 2025:
   - update: the website will ping the backend sever to shorten the waiting time of the backend server to "wake up"
+  - bug fixed: now adding/editing bidding will immediately show the change on the list
 
 ### June 1, 2025:
   - new feature: Restricted access to certain pages (only accessible by approved user after logged in)
