@@ -12,7 +12,8 @@ export default function RouteGuard({ children }) {
     if (!router.isReady) return
 
     const path = router.asPath
-    const isDanielPage = path === '/player/daniel'
+    const isDanielPage =
+      path === '/player/daniel' || path === '/player/danielfv'
 
     if (isDanielPage && loggedIn !== 'daniel' && loggedIn !== 'jeff') {
       router.replace('/restricted')

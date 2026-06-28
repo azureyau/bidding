@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
   const cookies = parseCookies(context)
   const token = cookies.token ? readToken(cookies.token) : null
 
-  if (username === 'daniel') {
+  if (username === 'daniel' || username === 'danielfv') {
     if (!token || (token.userName !== 'daniel' && token.userName !== 'jeff')) {
       return {
         redirect: {
@@ -43,7 +43,14 @@ export default function Player({ username }) {
   const [addMode, setAddMode] = useAtom(addModeAtom)
   const { playerName } = router.query
 
-  const allowedPlayerNames = ['daniel', 'rani', 'jacky', 'test', 'standard']
+  const allowedPlayerNames = [
+    'daniel',
+    'danielfv',
+    'rani',
+    'jacky',
+    'test',
+    'standard',
+  ]
   const server = 'https://biddingapi.onrender.com/api/listings/'
   const [biddingSeq, setBiddingSeq] = useAtom(biddingSeqAtom)
   const [fetchPath, setFetchPath] = useState()

@@ -38,6 +38,15 @@ export default function MainNav() {
                   Daniel
                 </Nav.Link>
               </Link>
+
+              <Link href='/player/danielfv' passHref legacyBehavior>
+                <Nav.Link
+                  active={router.asPath === '/player/danielfv'}
+                  onClick={() => setIsExpanded(false)}
+                >
+                  DanielFV
+                </Nav.Link>
+              </Link>
               <Link href='/player/rani' passHref legacyBehavior>
                 <Nav.Link
                   active={router.asPath === '/player/rani'}

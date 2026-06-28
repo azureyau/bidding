@@ -2,23 +2,31 @@
 
 ## Release notes
 
+### June 28, 2026:
+
+- update: added user profile DanielFV
+
 ### June 8, 2025:
-  - update: the website will ping the backend sever to shorten the waiting time of the backend server to "wake up"
+
+- update: the website will ping the backend sever to shorten the waiting time of the backend server to "wake up"
 
 ### June 1, 2025:
-  - new feature: Restricted access to certain pages (only accessible by approved user after logged in)
-  - new feature: User stay logged in after app resfresh / closed and re-open
-  - new feature: Home page now show the project release from project readme
-    
+
+- new feature: Restricted access to certain pages (only accessible by approved user after logged in)
+- new feature: User stay logged in after app resfresh / closed and re-open
+- new feature: Home page now show the project release from project readme
+
 ### Nov 16, 2024:
-  - new feature: log in feature
-  - revised feature: add bidding button avaliable only after logged in
-  - revised feature: editing bidding button avaliable only after logged in
+
+- new feature: log in feature
+- revised feature: add bidding button avaliable only after logged in
+- revised feature: editing bidding button avaliable only after logged in
 
 ### Nov 15, 2024:
-  - new feature: add bidding button
-  - new feature: revise bidding button
-  - object structure of bidding revised
+
+- new feature: add bidding button
+- new feature: revise bidding button
+- object structure of bidding revised
 
 ## technology used: API + next.js
 
@@ -29,11 +37,8 @@ fetching data from a free server. First time loading would be slow (~1min)
 https://bidding-3h5z.onrender.com
 
 ## current interface:
+
 ![image](https://github.com/user-attachments/assets/6e3b68f2-3f93-45e8-8955-47e18cfa5705)
-
-
-
-
 
 To be released:
 
