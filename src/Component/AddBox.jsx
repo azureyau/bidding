@@ -17,7 +17,10 @@ export default function AddBox(props) {
   // const server = 'http://localhost:3000/api/listings/'
 
   const getBidRank = (bidValue) => {
-    const match = bidValue?.trim().toLowerCase().match(/^([1-7])([chdsn])$/)
+    const match = bidValue
+      ?.trim()
+      .toLowerCase()
+      .match(/^([1-7])([chdsn])$/)
     if (!match) return null
 
     const suitOrder = { c: 0, h: 1, d: 2, s: 3, n: 4 }
@@ -44,11 +47,11 @@ export default function AddBox(props) {
 
     if (!newRank || !lastRank) return true
 
-    const isSmaller =
-      newRank[0] < lastRank[0] ||
-      (newRank[0] === lastRank[0] && newRank[1] < lastRank[1])
+    const isLarger =
+      newRank[0] > lastRank[0] ||
+      (newRank[0] === lastRank[0] && newRank[1] > lastRank[1])
 
-    return isSmaller || 'Bid must be smaller than the current non-universal bid'
+    return isLarger || 'The Bid must be larger than the current bid'
   }
 
   const submitForm = async (data) => {
