@@ -5,11 +5,52 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 export default function AddBox(props) {
-  const { register, reset, handleSubmit } = useForm()
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
   const [biddingSeq] = useAtom(biddingSeqAtom)
   const [_, setAddMode] = useAtom(addModeAtom)
   const server = 'https://biddingapi.onrender.com/api/listings/'
   // const server = 'http://localhost:3000/api/listings/'
+
+  const getBidRank = (bidValue) => {
+    const match = bidValue?.trim().toLowerCase().match(/^([1-7])([chdsn])$/)
+    if (!match) return null
+
+    const suitOrder = { c: 0, h: 1, d: 2, s: 3, n: 4 }
+    return [Number(match[1]), suitOrder[match[2]]]
+  }
+
+  const validateBidName = (value) => {
+    const trimmedValue = value?.trim()
+
+    if (!trimmedValue) return 'Bid name is required'
+
+    if (!/^[1-7][chdsn]$/i.test(trimmedValue)) {
+      return 'Must be two characters: first is 1-7 and second is c/h/d/s/n'
+    }
+
+    const currentBid = [...(biddingSeq || [])]
+      .reverse()
+      .find((bid) => !bid?.universal && bid?.bidName)
+
+    if (!currentBid?.bidName) return true
+
+    const newRank = getBidRank(trimmedValue)
+    const lastRank = getBidRank(currentBid.bidName)
+
+    if (!newRank || !lastRank) return true
+
+    const isSmaller =
+      newRank[0] < lastRank[0] ||
+      (newRank[0] === lastRank[0] && newRank[1] < lastRank[1])
+
+    return isSmaller || 'Bid must be smaller than the current non-universal bid'
+  }
+
   const submitForm = async (data) => {
     try {
       // Preparing the object to match the desired structure
@@ -64,15 +105,16 @@ export default function AddBox(props) {
             <Form.Control
               type='text'
               placeholder='1c'
+              isInvalid={!!errors.bidName}
               {...register('bidName', {
-                required: 'Bid name is required',
-                pattern: {
-                  value: /^[1-7][chdsnCHDSN]$/,
-                  message:
-                    'Must be two characters: first is 1-7 and second is c/h/d/s/n',
-                },
+                validate: validateBidName,
               })}
             />
+            {errors.bidName && (
+              <Form.Control.Feedback type='invalid'>
+                {errors.bidName.message}
+              </Form.Control.Feedback>
+            )}
           </Form.Group>
 
           <Form.Group className='mb-3'>

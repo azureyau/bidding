@@ -2,6 +2,10 @@
 
 ## Release notes
 
+### July 4 2026:
+
+- updated the add bid checking process
+
 ### June 28, 2026:
 
 - update: added user profile DanielFV
