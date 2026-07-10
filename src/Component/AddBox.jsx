@@ -23,7 +23,7 @@ export default function AddBox(props) {
       .match(/^([1-7])([chdsn])$/)
     if (!match) return null
 
-    const suitOrder = { c: 0, h: 1, d: 2, s: 3, n: 4 }
+    const suitOrder = { c: 0, d: 1, h: 2, s: 3, n: 4 }
     return [Number(match[1]), suitOrder[match[2]]]
   }
 
